@@ -5,10 +5,35 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    @foreach(var item in Model.Albums)
-    {
+    
+    <div class="jumbotron">
+        <form method="post">
+            <label asp-for="NewAlbumName"></label>
+            <input type="text" asp-for="NewAlbumName" />
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 
-    }
+    <table>
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Created At</td>
+                <td>Count</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Albums)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@(item.Name)</td>
+                    <td>@(item.CreatedAt)</td>
+                    <td>@(item.Pictures?.Count ?? 0) </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
 </div>
